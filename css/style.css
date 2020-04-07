@@ -1,0 +1,130 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+@font-face {
+    font-family: "Acme";
+    src: url(../fonts/Acme.ttf);
+}
+
+.decorate {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    /* background-color: #3f2a29; */
+    background-color: goldenrod;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 0 0 20px black;
+    border: 30px solid transparent;
+    border-image: url(../images/traditional_cutout.png) 100 round;
+}
+
+.button {
+    height: 2em;
+    margin-top: 10px;
+    padding: 0 10px;
+    font-family: "Acme";
+    font-size: 1.5em;
+    color: honeydew;
+    background-color: firebrick;
+    transition: 0.5s all ease;
+}
+
+.button:hover {
+    background-color: coral;
+    font-size: 2em;
+    height: 1.5em;
+}
+
+/*---------------------------------------
+   LOGIN
+ ----------------------------------------*/
+#login {
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../images/cactus_lanscape.png);
+    background-size: cover;
+    display: flex;
+}
+
+#login form {
+    width: 300px;
+    height: 160px;
+}
+
+#login section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+#login label {
+    font-family: "Acme";
+    flex: 1;
+    padding-right: 10px;
+}
+
+#login input {
+    flex: 2;
+    height: 2.5em;
+}
+
+
+/*---------------------------------------
+   LOBBY
+ ----------------------------------------*/
+ #lobby {
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../images/saloon_closeup_or.jpg);
+    background-size: cover;
+    display: flex;
+}
+
+#lobby main {
+    width: 90%;
+    height: 80%;
+    padding-top: 100px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#lobby section:first-of-type {
+    flex: 1;
+}
+
+#lobby section:last-of-type {
+    flex-basis: 100px;
+    width: 60%;
+    min-width: 500px;
+}
+
+#lobby h3 {
+    padding: 20px;
+    margin: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    width: 250px;
+}
+
+#lobby form {
+    display: flex;
+    flex-direction: column;
+}
+
+#lobby .button:last-of-type {
+    margin-top: 30px;
+    background-color: dimgray;
+    transition: 1s all ease;
+}
+
+#lobby .button:last-of-type:hover {
+    background-color: black;
+}
