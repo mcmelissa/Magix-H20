@@ -31,21 +31,45 @@
 
 			// essayer d'accéder à une page sans avoir les droits, retour à la page de connection
 			if ($_SESSION["visibility"] < $this->pageVisibility) {
-				header("location:login.php"); //redirection
+				header("location:index.php"); //redirection
 				exit();
 			}
 
 			// exécute le code de l'enfant
-			// patron de conception: template method
-			$data = $this->executeAction(); //retourne un tableau
+			$data = $this->executeAction(); //retourne un tableau : ConnectionError
 
 			$data["isConnected"] = $_SESSION["visibility"] > CommonAction::$VISIBILITY_PUBLIC;
 			$data["username"] = empty($_SESSION["username"]) ? null : $_SESSION["username"];
-			$data["password"] = "' test '";
-
+			$data["key"] = empty($_SESSION["username"]) ? null : $_SESSION["key"];
+			
 			return $data;
 		}
 
 		// méthode abstraite: à définir dans les sous-classes
 		protected abstract function executeAction();
+
+
+		/**
+		 * data = array('key1' => 'value1', 'key2' => 'value2');
+		 */
+		public function callAPI($service, array $data) {
+			$apiURL = "https://magix.apps-de-cours.com/api/" . $service;
+
+			$options = array(
+				'http' => array(
+					'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+					'method'  => 'POST',
+					'content' => http_build_query($data)
+				)
+			);
+			$context  = stream_context_create($options);
+			$result = file_get_contents($apiURL, false, $context);
+
+			if (strpos($result, "<br") !== false) {
+					var_dump($result);
+					exit;
+				}
+				
+			return json_decode($result);
+		}
 	}
