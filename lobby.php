@@ -9,17 +9,23 @@
 <body id="lobby">
     <main>
         <section>
-            <h3>Qu'est-ce que ce sera?</h3>
-            <a href="game.php" class="button">Pratique</a>
-            <a href="game.php" class="button">Jouer</a>
-            <a href="?logout=true" class="button" >Quitter</a>
+            <!-- <h3>Qu'est-ce que ce sera?</h3> -->
+            <h3>¡Bonyour Amigó!</h3>
+            <h3>¿Qu'est-cè què ça sera?</h3>
+            <!-- <h3>¿Qu'est-cè què yè peux tè serbir?</h3> -->
+            <form action="lobby.php" method="post">
+                <input type="submit" name="training" value="Pratique" class="button">
+                <input type="submit" name="play" value="Jouer" class="button">
+                <input type="submit" name="quit" value="Quitter" class="button">
+                <a href="?logout=true" class="button"> Quitter (temp)</a>
+            </form>
 
         </section>
         
         <section class="decorate">
             <!-- chat -->
-            <iframe style="width:700px;height:240px;"
-				src="<?="https://magix.apps-de-cours.com/server/#/chat/".$_SESSION["key"]?>">
+            <iframe style="width:700px;height:175px;"
+				src="<?="https://magix.apps-de-cours.com/server/#/chat/".$_SESSION["key"]; ?>">
             </iframe>
         </section>
     </main>

@@ -8,6 +8,19 @@
 		}
 
 		protected function executeAction() {
-			return array();
-        } 
+            // Option : QUITTER
+			if(isset($_POST['quit'])) {
+
+				$data["key"] = $_SESSION["key"];
+				CommonAction::callAPI("signout", $data);
+
+				//$_SESSION["visibility"] = CommonAction::$VISIBILITY_PUBLIC;
+				// Quand déloggé, est dirigé vers l'index
+				header("location:?logout=true");
+				// header("location:?index.php");
+				exit;
+			}
+			// ne retourne que la validite de la connection
+			//return compact("connectionError");
+		}
     } 

@@ -9,11 +9,9 @@
 
 		protected function executeAction() {
 			$connectionError = false;
-			//$data = [];
 			
-            //if (isset($_POST["username"], $_POST["password"])) {
-			if (isset($_POST["username"]) && isset($_POST["password"])) {	
-				var_dump($data);
+            if (isset($_POST["username"], $_POST["password"])) {
+			//if (isset($_POST["username"]) && isset($_POST["password"])) {	
                 $data["username"] = $_POST["username"];
 				$data["password"] = $_POST["password"];
 				

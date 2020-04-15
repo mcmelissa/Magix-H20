@@ -36,7 +36,8 @@
 			}
 
 			// exécute le code de l'enfant
-			$data = $this->executeAction(); //retourne un tableau : ConnectionError
+			//retourne un tableau [index:ConnectionError, lobby:]
+			$data = $this->executeAction();
 
 			$data["isConnected"] = $_SESSION["visibility"] > CommonAction::$VISIBILITY_PUBLIC;
 			$data["username"] = empty($_SESSION["username"]) ? null : $_SESSION["username"];

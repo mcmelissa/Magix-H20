@@ -8,16 +8,16 @@
 
 <body id="login">
     <form action="index.php" class="decorate" method="post">
-
-        <!-- if login failed -->
-        <?php
-            if ($data["connectionError"]) {
-            ?>
-                <div class="error">Erreur: Connection erronée</div>
-            <?php
-            }
-        ?>
         
+    <!-- if login failed -->
+    <?php
+        if ($data["connectionError"]) {
+        ?>
+            <div class="error">Connection erronée, veuillez réessayer</div>
+        <?php
+        }
+    ?>
+    <!-- - - - - - - - - -->
         <section>
             <label for="username">Nom d'usager:</label>
             <input type="text" name="username">
