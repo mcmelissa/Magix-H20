@@ -8,19 +8,50 @@
 		}
 
 		protected function executeAction() {
-            // Option : QUITTER
-			if(isset($_POST['quit'])) {
+			$connectionError = false;
+			$data["key"] = $_SESSION["key"];
 
-				$data["key"] = $_SESSION["key"];
+			// Option : PRATIQUE -->  service "games/auto-match"
+			if (isset($_POST['training'])) {
+				$data["type"] = "TRAINING";
+				$result = CommonAction::callAPI("games/auto-match", $data);
+				$_SESSION["result"] = $result;
+
+				// Gerer les erreurs
+				// (ici nous supposons que nous avons tjs un 'key' et un 'game_type' valides)
+				if ($result == "DECK_INCOMPLETE") {
+					$connectionError = true;
+				}
+				else {
+					// Acceder au jeu (pratique ou contre qqun)
+					header("location:game.php");
+					exit;
+				}
+			}
+			// Option : JOUER  -->  service "games/auto-match"
+			if (isset($_POST['play'])) {
+				$data["type"] = "PVP";
+				$result = CommonAction::callAPI("games/auto-match", $data);
+
+				// Gerer les erreurs
+				if ($result == "INVALID_USERNAME_PASSWORD") {
+					$connectionError = true;
+					$_SESSION["type"] = "play";
+				}
+				else {
+					// Acceder au jeu (pratique ou contre qqun)
+					header("location:game.php");
+					exit;
+				}
+			}
+			// Option : QUITTER  -->  service "signout"
+			else if (isset($_POST['quit'])) {
+
 				CommonAction::callAPI("signout", $data);
 
-				//$_SESSION["visibility"] = CommonAction::$VISIBILITY_PUBLIC;
-				// Quand déloggé, est dirigé vers l'index
+				// Quand déloggé, est dirigé vers l'index (VISIBILITY redevient PUBLIC)
 				header("location:?logout=true");
-				// header("location:?index.php");
 				exit;
 			}
-			// ne retourne que la validite de la connection
-			//return compact("connectionError");
 		}
     } 

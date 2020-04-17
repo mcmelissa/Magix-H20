@@ -54,6 +54,12 @@
 	margin-bottom: 10px;
 }
 
+.test2 {
+    background-color: rgb(130, 200, 238);
+    width: 50%;
+    margin: auto;
+}
+
 /*---------------------------------------
    LOGIN
  ----------------------------------------*/
@@ -92,7 +98,7 @@
 /*---------------------------------------
    LOBBY
  ----------------------------------------*/
- #lobby {
+#lobby {
     width: 100vw;
     height: 100vh;
     background-image: url(../images/saloon_closeup_or.jpg);
@@ -156,6 +162,37 @@
 
 #lobby .button:last-of-type:hover {
     background-color: black;
+}
+
+/*---------------------------------------
+   GAME
+ ----------------------------------------*/
+#game {
+    width: 100vw;
+    height: 100vh;
+}
+
+#game main {
+    width: 90%;
+    height: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+}
+
+.myGame {
+    flex: 1;
+    background-color: rgba(238, 130, 238, 0.3);
+    width: 50%;
+    margin: auto;
+}
+
+.opponentGame {
+    flex: 1;
+    background-color: rgba(236, 238, 130, 0.3);
+    width: 50%;
+    margin: auto;
 }
 
 /*---------------------------------------

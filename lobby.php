@@ -9,15 +9,23 @@
 <body id="lobby">
     <main>
         <section>
-            <!-- <h3>Qu'est-ce que ce sera?</h3> -->
             <h3>¡Bonyour Amigó!</h3>
-            <h3>¿Qu'est-cè què ça sera?</h3>
-            <!-- <h3>¿Qu'est-cè què yè peux tè serbir?</h3> -->
+            <h3>¿Qu'est-cè què ça sèra?</h3>
+
+            <!-- if connection to game failed -->
+            <?php
+                if ($data["connectionError"]) {
+                ?>
+                    <div class="error">Erreur: <?= $_SESSION["result"] ?> </div>
+                <?php
+                }
+            ?>
+            <!-- - - - - - - - - - - - - - - -->
+
             <form action="lobby.php" method="post">
                 <input type="submit" name="training" value="Pratique" class="button">
                 <input type="submit" name="play" value="Jouer" class="button">
                 <input type="submit" name="quit" value="Quitter" class="button">
-                <a href="?logout=true" class="button"> Quitter (temp)</a>
             </form>
 
         </section>

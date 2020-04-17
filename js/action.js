@@ -1,7 +1,7 @@
 window.addEventListener("load", () =>
 
 
-tick()
+    tick()
 );
 
 const tick = () => {

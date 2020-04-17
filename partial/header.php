@@ -8,5 +8,3 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="images/icon.gif" type="icon">
 </head>
-
-<!-- require_once("partial/header.php"); -->

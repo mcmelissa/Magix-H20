@@ -18,6 +18,7 @@
         }
     ?>
     <!-- - - - - - - - - -->
+    
         <section>
             <label for="username">Nom d'usager:</label>
             <input type="text" name="username">
