@@ -8,7 +8,12 @@
     src: url(../fonts/Acme.ttf);
 }
 
+h1 {
+    font-family: "Acme";
+}
+
 .decorate {
+    z-index: 1;
     width: 100%;
     height: 100%;
     margin: auto;
@@ -54,11 +59,6 @@
 	margin-bottom: 10px;
 }
 
-.test2 {
-    background-color: rgb(130, 200, 238);
-    width: 50%;
-    margin: auto;
-}
 
 /*---------------------------------------
    LOGIN
@@ -108,9 +108,9 @@
 
 #lobby main {
     width: 90%;
-    height: 80%;
-    padding-top: 70px;
+    height: 90%;
     margin: auto;
+    padding-top: 30px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -121,10 +121,9 @@
     display: flex;
     flex-direction: column;
     padding: 20px;
-    margin: 10px;
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 10px;
-    width: 300px;
+    width: 250px;
 }
 
 #lobby form {
@@ -145,6 +144,7 @@
 #lobby .decorate {
     background-color: rgba(218, 165, 32, 0.7);
     margin-bottom: 0;
+    padding: 0px;
 }
 
 #lobby .button {
@@ -167,9 +167,11 @@
 /*---------------------------------------
    GAME
  ----------------------------------------*/
-#game {
+ #game {
     width: 100vw;
     height: 100vh;
+    background-image: url(../images/old_table.01.jpg);
+    background-size: cover;
 }
 
 #game main {
@@ -181,23 +183,109 @@
     justify-content: space-between; 
 }
 
+/* concerning my game */
 .myGame {
-    flex: 1;
-    background-color: rgba(238, 130, 238, 0.3);
-    width: 50%;
+    flex: 2;
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 100%;
     margin: auto;
 }
 
+.deck {
+    display: flex;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-around;
+}
+
+.card {
+    width: 130px;
+    height: 220px;
+    color: darkslategray;
+    border-radius: 20px 0;
+    /* margin: auto 10px; */
+}
+
+/* concerning the overall game*/
+.theGame {
+    flex: 3;
+    width: 100%;
+}
+
+.time {
+    position: absolute;
+    top: 40%;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 30px;
+}
+
+.opponentsTurn {
+    position: relative;
+    height: 287px;
+    width: 66px;
+    top: -110px;
+    background-image: url(../images/arrow_white.png);
+    opacity: 0.7;
+    background-size: cover;
+    transform: scaleY(-1);
+}
+
+.myTurn {
+    position: relative;
+    height: 287px;
+    width: 66px;
+    top: -110px;
+    background-image: url(../images/arrow_white.png);
+    opacity: 0.7;
+    background-size: cover;
+}
+
+.timeRemaining {
+    border: solid rgba(255, 255, 255, 0.5) 2px;
+    border-radius: 40px;
+    color: white;
+    padding: 20px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+}
+
+#game .decorate {
+    z-index: 1;
+    position: absolute;
+    margin: 0;
+    padding: 50px 0;
+    left: 25%;
+    top: 35%;
+    width: 50%;
+    height: auto;
+    box-shadow: 5px 5px 10px black;
+    text-align: center;
+}
+
+/* concerning opponent's game */
 .opponentGame {
     flex: 1;
     background-color: rgba(236, 238, 130, 0.3);
-    width: 50%;
+    width: 100%;
     margin: auto;
 }
 
 /*---------------------------------------
-   CHAT-ROOM
+   POUR ANIMATION JAVASCRIPT
  ----------------------------------------*/
- .chat-room .chat-msg{
-     margin-top: 15px;
- }
+#canvas {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+}
+
+.thumbleweed {
+	position: absolute;
+	background-image: url(../images/thumbleweed.png);
+	width: 250px;
+	height: 228px;
+}

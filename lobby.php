@@ -32,7 +32,7 @@
         
         <section class="decorate">
             <!-- chat -->
-            <iframe style="width:700px;height:175px;"
+            <iframe style="width:700px;height:200px;"
 				src="<?="https://magix.apps-de-cours.com/server/#/chat/".$_SESSION["key"]; ?>">
             </iframe>
         </section>

@@ -8,7 +8,7 @@
 		}
 
 		protected function executeAction() {
-            var_dump($_SESSION["result"]);
+            //var_dump($_SESSION["result"]);
 			return array();
 		}
     } 

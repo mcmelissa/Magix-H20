@@ -6,6 +6,9 @@
     require_once("partial/header.php");
 ?>
 
+<script src="./js/indexAnimation.js"></script>
+<script src="js/sprite/Thumbleweed.js"></script>
+
 <body id="login">
     <form action="index.php" class="decorate" method="post">
         
@@ -30,6 +33,7 @@
 
         <input type="submit" value="Connexion" class="button">
     </form>
+    <canvas id="canvas"></canvas>
 
 <?php
 	require_once("partial/footer.php");
