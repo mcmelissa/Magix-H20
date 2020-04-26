@@ -8,8 +8,13 @@
     src: url(../fonts/Acme.ttf);
 }
 
-h1 {
+h1{
     font-family: "Acme";
+}
+
+div {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
 }
 
 .decorate {
@@ -17,9 +22,7 @@ h1 {
     width: 100%;
     height: 100%;
     margin: auto;
-    /* background-color: #3f2a29; */
     background-color: goldenrod;
-    /* background-color: rgba(218, 165, 32, 0.7); */
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -47,7 +50,6 @@ h1 {
 }
 
 .error {
-    /* position: absolute; */
 	text-align: center;
 	font-weight: bold;
 	width: 100%;
@@ -66,6 +68,7 @@ h1 {
 #login {
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
     background-image: url(../images/cactus_lanscape.png);
     background-size: cover;
     display: flex;
@@ -101,6 +104,7 @@ h1 {
 #lobby {
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
     background-image: url(../images/saloon_closeup_or.jpg);
     background-size: cover;
     display: flex;
@@ -170,108 +174,499 @@ h1 {
  #game {
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
     background-image: url(../images/old_table.01.jpg);
     background-size: cover;
 }
 
 #game main {
     width: 90%;
-    height: 90%;
-    margin: auto;
+    height: 98%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; 
 }
 
-/* concerning my game */
-.myGame {
-    flex: 2;
-    background-color: rgba(255, 255, 255, 0.2);
+/*-- concerning the chat --*/
+
+
+
+/*-- concerning the overall game --*/
+
+/* heroes */
+.hero {
+    position: absolute;
+    right: -100px;
+    width: 250px;
+    height: 250px;
+    /* background-color: green; */
+    background-image: url(../images/heroes_bkgd.jpg);
+    background-size: cover;
+    border-radius: 150px;
+    border: 10px solid mediumseagreen;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+}
+
+.myGame .hero:hover {
+    border: 13px solid coral;
+    border-radius: 200px;
+}
+
+.heroImage {
+    z-index: 1;
+    width: 250px;
+    height: 250px;
+    background-size: cover;
+    border-radius: 150px;
+}
+
+.infos {
+    /* width: 120px; */
+    z-index: 2;
+    position: absolute;
+    right: 90px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.7));
+    padding: 5px 15px;
     width: 100%;
-    margin: auto;
+    text-align: right;
 }
 
-.deck {
-    display: flex;
-    flex-direction: row;
-    display: flex;
-    justify-content: space-around;
+.infos .name {
+    color: yellow;
+    text-shadow: 0 0 4px black, 2px 1px 2px black;
 }
 
+.hp, .mana {
+    z-index: -1;
+    position: absolute;
+    padding: 12px 30px;
+    text-align: center;
+    width: 50px;
+    height: 20px;
+    border-radius: 25px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+}
+
+.hp {
+    left: -70px;
+    background-color: navajowhite;
+    background-image: url(../images/heart.png);
+    background-repeat: no-repeat;
+    background-position: center left;
+}
+
+.mana {
+    left: -80px;
+    background-image: url(../images/mana.png);
+    background-repeat: no-repeat;
+    background-position: center left;
+    background-color: gold;
+}
+
+/* card content */
 .card {
-    width: 130px;
-    height: 220px;
-    color: darkslategray;
-    border-radius: 20px 0;
-    /* margin: auto 10px; */
+    position: relative;
+    text-align: center;
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+    background-size: cover;
 }
 
-/* concerning the overall game*/
-.theGame {
-    flex: 3;
+.cardImage {
     width: 100%;
+    height: 40%;
+    background-color: grey;
+    border-radius: 10px 10px 0 0;
+}
+
+.cardName {
+    color: white;
+    width: 100%;
+    padding: 3px 0;
+    margin-bottom: 3px;
+    background-color: mediumseagreen;
+}
+
+.cardHp {
+    position: absolute;
+    top: -2px;
+    right: 5px;
+    width: 30px;
+    height: 45px;
+    background-color: navajowhite;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 3px;
+    border-radius: 0 0 5px 5px;
+    background-image: url(../images/heart.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center top;
+}
+
+.cardMana {
+    position: absolute;
+    bottom: -2px;
+    left: 5px;
+    width: 30px;
+    height: 45px;
+    background-color: gold;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 3px;
+    border-radius: 5px 5px 0 0;
+    background-image: url(../images/mana.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+}
+
+.cardAttack {
+    position: absolute;
+    bottom: -2px;
+    left: 40px;
+    width: 30px;
+    height: 45px;
+    background-color: aquamarine;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 3px;
+    border-radius: 5px 5px 0 0;
+    /* background-image: url(../images/sword.svg); */
+    background-image: url(../images/luchador.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+}
+
+/* my cards */
+.myGame .card div {
+    font-size: xx-small;
+}
+
+.myGame .card {
+    width: 90px;
+    height: 150px;
+    margin: 0 5px;
+    padding: 5px;
+}
+
+.myGame .cardImage {
+    height: 35%;
+    border-radius: 15px 20px 0 0;
+}
+
+.myGame .cardHp {
+    top: -4px;
+    width: 20px;
+    height: 35px;
+    border-radius: 0 0 3px 3px;
+}
+
+.myGame .cardMana {
+    bottom: -4px;
+    width: 20px;
+    height: 35px;
+    border-radius: 0 0 3px 3px;
+}
+
+.myGame .cardAttack {
+    bottom: -4px;
+    left: 30px;
+    width: 20px;
+    height: 35px;
+    border-radius: 0 0 3px 3px;
+}
+
+.remainingDeck {
+    position: absolute;
+    left: 20px;
+    width: 90px;
+    height: 140px;
+    /* background-color: #000028; */
+    background-image: url(../images/deck_back.jpg);
+    background-size: cover;
+    /* transform: rotate(90deg); */
+    border-radius: 0 20px;
+    box-shadow: 0 0 5px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: yellow;
+    text-shadow: 0 0 10px black, 2px 1px 5px black;
+    font-size: 3em;
+}
+
+.opponentGame .remainingDeck {
+    margin-top: 50px;
+}
+
+/* the board */
+.board {
+    margin-top: 6%;
+    flex-grow: 6;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .time {
     position: absolute;
-    top: 40%;
-    right: 0;
+    right: 20px;
+    width: 70px;
+    height: 200px;
+    top: calc(50% - 100px);
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    align-items: center;
     margin-right: 30px;
 }
 
 .opponentsTurn {
-    position: relative;
+    position: absolute;
+    left: 50%;
     height: 287px;
     width: 66px;
-    top: -110px;
     background-image: url(../images/arrow_white.png);
-    opacity: 0.7;
     background-size: cover;
     transform: scaleY(-1);
 }
 
 .myTurn {
-    position: relative;
+    position: absolute;
+    left: 35%;
     height: 287px;
     width: 66px;
-    top: -110px;
     background-image: url(../images/arrow_white.png);
     opacity: 0.7;
     background-size: cover;
 }
 
 .timeRemaining {
-    border: solid rgba(255, 255, 255, 0.5) 2px;
+    z-index: 1;
+    position: absolute;
+    left: 50%;
+    border: solid rgba(0, 0, 0, 0.788) 2px;
     border-radius: 40px;
-    color: white;
-    padding: 20px;
-    width: 25px;
-    height: 25px;
-    text-align: center;
+    background-color: white;
+    color: black;
+    width: 75px;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.timeRemaining:hover {
+    background-color: coral;
+}
+
+.myBoard, .opponentBoard {
+    flex: 1;
+    display: flex;
+}
+
+.myBoard{
+    align-items: flex-start;
+    padding-top: 5px;
+}
+
+.opponentBoard {
+    align-items: flex-end;
+    padding-bottom: 5px;
+}
+
+
+.card {
+    width: 120px;
+    height: 190px;
+    margin: 0 10px;
+    background-image: url(../images/deck_front.jpg); 
+    border-radius: 20px 0;
 }
 
 #game .decorate {
-    z-index: 1;
-    position: absolute;
-    margin: 0;
-    padding: 50px 0;
-    left: 25%;
-    top: 35%;
-    width: 50%;
-    height: auto;
-    box-shadow: 5px 5px 10px black;
-    text-align: center;
+    z-index: 2;
+    padding: 0;
 }
 
-/* concerning opponent's game */
+.show {
+    position: absolute;
+    left: 150px;
+    transform: translateY(-200px);
+    transition: ease 1s all;
+}
+
+#game .chat {
+    position: absolute;
+    top: 0;
+    width: 700px;
+    height: 100px;
+}
+
+.chat h1{
+    position: absolute;
+    bottom: -100px;
+    left: 40px;
+    padding: 5px;
+    border: solid 2px black;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.chat input{
+    opacity: 0;
+    position: absolute;
+    z-index: 3; /*important*/
+    bottom: -110px;
+    left: 40px;
+    width: 50px;
+    height: 50px;
+}
+
+.chat input:checked~.show {
+    transform: translateY(0px);
+}
+
+
+/*--  concerning my game --*/
+.myGame {
+    flex: 3;
+    width: 100%;  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+.myGame .deck {
+    display: flex;
+    flex-direction: row;
+}
+
+.myGame .hero {
+    bottom: -100px;
+}
+
+.myGame .heroImage {
+    background-image: url(../images/heroes/avocado.png);
+}
+
+.myGame .infos {
+    top: -35px;
+}
+
+.myGame .hp {
+    top: 50px;
+}
+
+.myGame .mana {
+    top: 100px;
+}
+
+/*-- concerning opponent's game --*/
 .opponentGame {
     flex: 1;
-    background-color: rgba(236, 238, 130, 0.3);
     width: 100%;
-    margin: auto;
+    max-height: 12.5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.opponentGame .deck {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: -50px;
+}
+
+.opponentGame .deck .card {
+    width: 75px;
+    height: 105px;
+    margin: 0 5px;
+    background-image: url(../images/deck_back.jpg); 
+    border-radius: 12px 0;
+}
+
+.opponentGame .hero {
+    top: -100px;
+}
+
+.opponentGame .heroImage {
+    background-image: url(../images/heroes/chile.png);
+}
+
+.opponentGame .infos {
+    bottom: -35px;
+}
+
+.opponentGame .hp {
+    bottom: 50px;
+}
+
+.opponentGame .mana {
+    bottom: 100px;
+}
+
+/*----------------*/
+.endTurn {
+    z-index: 2;
+    position: absolute;
+    right: 20px;
+    width: 70px;
+    height: 200px;
+    top: calc(50% - 100px);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 30px;
+}
+
+.heroImage form{
+    width: 100%;
+    height: 100%;
+}
+
+.heroImage form input {
+    position: absolute;
+    top: 100px;
+    width: 100%;
+    height: 100px;
+}
+
+/*---------------------------------------
+   BANDEROLES
+ ----------------------------------------*/
+.banderole {
+    position: absolute;
+    background-color: teal;
+    width: 50vw;
+    height: 50vh;
+    top: 0;
+}
+
+.waiting {
+    background-image: url(../images/banderole_waiting.png);
+    background-size: cover;
+}
+
+.won {
+    background-image: url(../images/banderole_won.png);
+    background-size: cover;
+}
+
+.lost {
+    background-image: url(../images/banderole_lost.png);
+    background-size: cover;
 }
 
 /*---------------------------------------

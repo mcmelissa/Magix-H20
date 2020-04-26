@@ -32,8 +32,9 @@
         
         <section class="decorate">
             <!-- chat -->
+             <!-- j'ai choisi de ne pas modifier le style, la lecture est plus facile -->
             <iframe style="width:700px;height:200px;"
-				src="<?="https://magix.apps-de-cours.com/server/#/chat/".$_SESSION["key"]; ?>">
+				src=https://magix.apps-de-cours.com/server/#/chat/<?=$_SESSION["key"]?>>
             </iframe>
         </section>
     </main>

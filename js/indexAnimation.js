@@ -20,7 +20,7 @@ const tick = () => {
     timer++;
 
     // thumbleweed //
-    if (timer == 10) {
+    if (timer == 100) {
         thumbleweed.push(new Thumbleweed());
     }
 
@@ -32,11 +32,11 @@ const tick = () => {
             thumbleweed.splice(i, 1);
             i--;
         }
-      }
+    }
     
-      if (timer == 500) {
-        timer = 0;
-      }
+    if (timer == 500) {
+    timer = 0;
+    }
 
 
     window.requestAnimationFrame(tick);

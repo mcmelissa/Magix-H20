@@ -15,12 +15,12 @@
 			if (isset($_POST['training'])) {
 				$data["type"] = "TRAINING";
 				$result = CommonAction::callAPI("games/auto-match", $data);
-				$_SESSION["result"] = $result;
 
 				// Gerer les erreurs
 				// (ici nous supposons que nous avons tjs un 'key' et un 'game_type' valides)
 				if ($result == "DECK_INCOMPLETE") {
 					$connectionError = true;
+					$_SESSION["result"] = $result;
 				}
 				else {
 					// Acceder au jeu (pratique ou contre qqun)
@@ -34,9 +34,9 @@
 				$result = CommonAction::callAPI("games/auto-match", $data);
 
 				// Gerer les erreurs
-				if ($result == "INVALID_USERNAME_PASSWORD") {
+				if ($result == "MAX_DEATH_THRESHOLD_REACHED") {
 					$connectionError = true;
-					$_SESSION["type"] = "play";
+					$_SESSION["result"] = $result;
 				}
 				else {
 					// Acceder au jeu (pratique ou contre qqun)
@@ -46,12 +46,13 @@
 			}
 			// Option : QUITTER  -->  service "signout"
 			else if (isset($_POST['quit'])) {
-
 				CommonAction::callAPI("signout", $data);
 
 				// Quand déloggé, est dirigé vers l'index (VISIBILITY redevient PUBLIC)
 				header("location:?logout=true");
 				exit;
 			}
+			// ne retourne que la validite de la connection
+			return compact("connectionError");
 		}
     } 

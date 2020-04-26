@@ -5,77 +5,95 @@ const state = () => {
     })
     .done(function (msg) { 
         let reponse = JSON.parse(msg);
-        // console.log(reponse);
-        // console.log(reponse.hand);
+
+        // opponent
+        let opDeck = document.querySelector(".opponentGame > .deck");
+        // board
+        let time = document.querySelector(".time");
+        let board = document.querySelector(".board");
+        // me
+        let myDeck = document.querySelector(".myGame > .deck");
         
-        //creating parents
-        let theGame = document.querySelector(".theGame");
-        let myGame = document.querySelector(".myGame");
-        // vider enfants
-        theGame.querySelectorAll('*').forEach(n => n.remove());
-        myGame.querySelectorAll('*').forEach(n => n.remove());
-        // Alternative pour vider le parent
-        // while (parent.firstChild) {
-        //     parent.removeChild(parent.firstChild);
-        // }
+        // remove board's children 
+        board.querySelectorAll('*').forEach(n => n.remove());
 
-        // if game won / lost
-        if (reponse == "LAST_GAME_WON" || reponse == "LAST_GAME_LOST") {
-            this.finishedGame = document.createElement("h1");
-            this.finishedGame.className = "decorate";
-            theGame.appendChild(this.finishedGame).innerText = reponse;
-        } else {
+        // create board's sub-containers
+        let opBoard = document.createElement("div");
+        opBoard.className = "opponentBoard";
+        let myBoard = document.createElement("div");
+        myBoard.className = "myBoard";
+        board.appendChild(opBoard);
+        board.appendChild(myBoard);
 
-            // Creating container for turn / time remaining
-            this.timeNode = document.createElement("div");
-            this.timeNode.className = "time";
-            let firstChild = theGame.appendChild(this.timeNode);
+        
+        // if game is : waiting / won / lost 
+        if (typeof reponse !=="object") {
+
+            if (reponse == "WAITING") {
+                // add new child
+                this.finishedGame = document.createElement("h1");
+                this.finishedGame.className = "banderole";
+                this.finishedGame.className = "waiting";
+                board.appendChild(this.finishedGame).innerText = reponse;
+            }
+            else if (reponse == "LAST_GAME_WON" || reponse == "LAST_GAME_LOST") {
+                // add new child
+                this.finishedGame = document.createElement("h1");
+                this.finishedGame.className = "banderole";
+                this.finishedGame.className = "won";
+                board.appendChild(this.finishedGame);
+            }
+            else if (reponse == "LAST_GAME_LOST") {
+                // add new child
+                this.finishedGame = document.createElement("h1");
+                this.finishedGame.className = "banderole";
+                this.finishedGame.className = "lost";
+                board.appendChild(this.finishedGame);
+            }
+        }
+        // if game is being played
+        else { 
+            // remove sub-container's children before creating new ones
+            time.querySelectorAll('*').forEach(n => n.remove());
 
             // Remaining Time for turn
             this.remainingTimeNode = document.createElement("h1");
             this.remainingTimeNode.className = "timeRemaining";
-
+            time.appendChild(this.remainingTimeNode).innerText = typeof reponse !== "object" ? "- -" : reponse.remainingTurnTime; 
             // My turn?
             this.myTurnNode = document.createElement("div");
-            reponse.yourTurn ? this.myTurnNode.className = "myTurn" :this.myTurnNode.className = "opponentsTurn";
+            reponse.yourTurn ? this.myTurnNode.className = "myTurn" : this.myTurnNode.className = "opponentsTurn";
+            time.appendChild(this.myTurnNode);
 
-            console.log(reponse.yourTurn);
+            //display cards (opponent, board and mine)
+            displayOpponentCards(reponse.opponent.handSize, opDeck)
+            displayBoardCards(reponse.opponent.board, opBoard, reponse.board, myBoard)
+            displayMyCards(reponse.hand, myDeck);
 
-            firstChild.appendChild(this.myTurnNode);
-            // firstChild.appendChild(this.myTurnNode).innerText = reponse.yourTurn ? "Mon tour de jouer" : "tour de l'adversaire";
-            firstChild.appendChild(this.remainingTimeNode).innerText = reponse.remainingTurnTime; 
-
-
-            //  A TRAVAILLER !!
-            displayCards(reponse.hand, myGame);
-
-            // // A TESTER
-            // if (document.querySelector(".timeRemaining")) {
-            //     parent.appendChild(this.remainingTimeNode).innerText = reponse.remainingTurnTime; 
-            //     parent.replaceChild(this.node, parent.firstElementChild);
-            // }
-            // else {
-            // }
-
-
-            //--> toute la page
-            //document.body.innerText = reponse.hand;
-            //--> s'ajoute continuellement dans 'section'
-            //parent.appendChild(this.node).innerText = reponse.remainingTurnTime; 
+            // opponent
+            document.querySelector(".opponentGame > .hero > .infos > .name").innerText = reponse.opponent.username;
+            document.querySelector(".opponentGame > .hero > .infos > h3").innerText = reponse.opponent.welcomeText;
+            document.querySelector(".opponentGame > .hero > .infos > .heroType").innerText = reponse.opponent.heroClass;
+            document.querySelector(".opponentGame > .hero > .hp").innerText = reponse.opponent.hp;
+            document.querySelector(".opponentGame > .hero > .mana").innerText = reponse.opponent.mp;
+            document.querySelector(".opponentGame > .remainingDeck").innerText = reponse.opponent.remainingCardsCount;
+            
+            // me
+            document.querySelector(".myGame > .hero > .infos > h3").innerText = reponse.welcomeText;
+            document.querySelector(".myGame > .hero > .infos > .heroType").innerText = reponse.heroClass;
+            document.querySelector(".myGame > .hero > .hp").innerText = reponse.hp;
+            document.querySelector(".myGame > .hero > .mana").innerText = reponse.mp;
+            document.querySelector(".myGame > .remainingDeck").innerText = reponse.remainingCardsCount;
         }
 
         setTimeout(state, 1000); // Attendre 1 seconde avant de relancer l’appel
     })
 
-    //quand il y a un probleme avec la requete
+    // si probleme avec la requete
     .fail(function(msg) {
-        $('.test').html("ERREUR");
-        $('.test').addClass("erreur");
+        $('.board').html(msg);
+        $('.board').addClass("erreur");
     })
-    //tjr réalisé
-    .always(function(msg){
-        $('.test').addClass("test")
-    });
 }
 
 window.addEventListener("load", () => {
@@ -83,32 +101,47 @@ window.addEventListener("load", () => {
 });
 
 
-function displayCards(myHand, parent) {
-    // Creating deck's container
-    this.deck = document.createElement("div");
-    this.deck.className = "deck";
-    let hand = parent.appendChild(this.deck);
+/*---------------------------------------
+   FUNCTIONS
+ ----------------------------------------*/
 
-    // 2. À l’aide d’une boucle, créer à nouveau un bouton par carte, y afficher des information de la carte dessus.
-    for (c in myHand) {
-        this.card  = document.createElement("button")
-        this.card.className = "card";
-        this.card.id = myHand[c].uid;
+function displayMyCards(hand, deck) {
+    // remove all cards from deck
+    deck.querySelectorAll('*').forEach(n => n.remove());
 
-        // 3. Inscrire ce bouton à une fonction écoutant les clicks ( addEventListener )
-        this.card.addEventListener("mouseover", () => {
-            this.card.style.boxShadow = "0px 0px 25px orange";            
-        });
+    // reassign cards to deck
+    for (c in hand) {
+        this.card = new Card(hand[c], deck);
+    }
+}
 
-        this.card.addEventListener("click", () => {
-            console.log("play");
-        });
+function displayOpponentCards(hand, deck) {
+    // remove all cards from deck
+    deck.querySelectorAll('*').forEach(n => n.remove());
 
-        // 4. Attacher au bouton le uid de la carte…on peut inclure des information sur un bouton simplement en faisant bouton.info = quelque chose
-        this.card.info = myHand[c].uid;
+    // reassign cards to deck
+    for (let i = 0; i < hand; i++) {
+        this.card  = document.createElement("div")
+        this.card.className = "card";     
+        deck.appendChild(this.card);
+    }
+}
 
-        // 5. Bien entendu, ajouter le bouton à votre conteneur
-        hand.appendChild(this.card).innerText = myHand[c].id;
+function displayBoardCards(opHand, opBoard, myHand, myBoard) {
+    // remove all cards from deck
+    if (opHand) {
+        opBoard.querySelectorAll('*').forEach(n => n.remove());
+    }
+    if (myHand) {
+        myBoard.querySelectorAll('*').forEach(n => n.remove());
     }
 
+    // reassign cards to deck
+    for (c in opHand) {
+        this.cardOp = new Card(opHand[c], opBoard);
+    }
+
+    for (c in myHand) {
+        this.card = new Card(myHand[c], myBoard);
+    }
 }
