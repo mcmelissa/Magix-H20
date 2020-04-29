@@ -641,9 +641,14 @@ div {
     margin-right: 30px;
 }
 
-.board .error {
+#game .board .error,  #lobby main .error{
     position: absolute;
-    top: 0;
+    bottom: 23%;
+    height: 2em;
+    width: 80%;
+    color: white;
+    text-shadow: 0 0 2px black;
+    background-image: linear-gradient(to right,  rgba(0, 0, 0, 0), rgba(160, 76, 76, 0.2), rgba(255, 0, 0, 0.5), rgba(160, 76, 76, 0.2),  rgba(0, 0, 0, 0));
 }
 
 /*---------------------------------------

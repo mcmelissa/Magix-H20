@@ -17,6 +17,13 @@ class Chili {
   
       this.parent = document.getElementById("lobby");
       this.parent.insertBefore(this.node, this.parent.firstChild)
+
+      addEventListener("mousedown", () => {
+        this.node.style.transform = "scale(3) rotate(180deg)";
+      })
+      addEventListener("mouseup", () => {
+        this.node.style.transform = "scale(1)";
+      })
     }
   
     tick() {
@@ -43,17 +50,9 @@ class Chili {
       } else {
         this.y += this.speed*2;
         if (this.y >= this.counterHeight) {
-          // this.y = this.counterHeight;
           this.isDown = true;
         }
       }
-
-      addEventListener("mousedown", () => {
-        this.node.style.transform = "scale(3) rotate(180deg)";
-      })
-      addEventListener("mouseup", () => {
-        this.node.style.transform = "scale(1)";
-      })
 
       this.node.style.left = this.x + "px";
       this.node.style.top = this.y + "px";

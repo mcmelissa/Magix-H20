@@ -11,8 +11,26 @@
 			$connectionError = false;
 			$data["key"] = $_SESSION["key"];
 
+			// Option : OBSERVER  -->  service "games/observe"
+			if (isset($_POST['observeNow']) && !empty($_POST['observed'])) {
+				$data["username"] = $_POST["observed"];
+				$result = CommonAction::callAPI("games/observe", $data);
+				// var_dump($result);
+
+				// Gerer les erreurs
+				if ($result == "INVALID_KEY") {
+					$connectionError = true;
+					$_SESSION["result"] = $result;
+				}
+				else {
+					// Acceder au jeu du joueur selectionné
+					header("location:game.php");
+					exit;
+				}
+			}
 			// Option : PRATIQUE -->  service "games/auto-match"
-			if (isset($_POST['training'])) {
+			
+			else if (isset($_POST['training'])) {
 				$data["type"] = "TRAINING";
 				$result = CommonAction::callAPI("games/auto-match", $data);
 
@@ -53,27 +71,8 @@
 				header("location:?logout=true");
 				exit;
 			}
-			// Option : OBSERVER  -->  service "games/observe"
-			if (!empty($_POST['observed']) && isset($_POST['observe'])) {
-				
-				$result = null;
-				$data["username"] = $_POST["observed"];
-				$result = CommonAction::callAPI("games/observe", $data);
-				// var_dump($result);
-
-				// Gerer les erreurs
-				if ($result == "INVALID_KEY") {
-					$connectionError = true;
-					$_SESSION["result"] = $result;
-				}
-				else {
-					// Acceder au jeu du joueur selectionné
-					header("location:game.php");
-					exit;
-				}
-			}
 			// ne retourne que la validite de la connection
 			// return compact("connectionError");
-			return compact("result");
+			return compact("connectionError");
 		}
     } 

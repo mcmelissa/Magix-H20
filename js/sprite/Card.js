@@ -47,15 +47,12 @@ class Card {
             this.card.addEventListener("click", () => {
                 // isAttackMode = true
                 card_uid = this.card.info;
-            });
-            console.log(isAttackMode);
-            
+            });            
         }
-        if (deck == document.querySelector(".board > .opponentBoard") && isAttackMode) {
+        if (deck == document.querySelector(".board > .opponentBoard")) {
             let target_uid = this.card.info;
             this.card.addEventListener("click", () => {
                 attack(card_uid,target_uid);
-                console.log("board adversaire");
             })
             this.card.addEventListener("mouseover", mouseOver);
             this.card.addEventListener("mouseout", mouseOut);
@@ -135,9 +132,7 @@ const attack = (card_uid, target_uid) => {
     })
     .done(function (msg) { 
         let reponse = JSON.parse(msg);
-        console.log(card_uid + " ATTACK " + target_uid);
         card_uid = null;
-        // isAttackMode = false;
     })
     .fail(function(msg) {
         let reponse = JSON.parse(msg);
@@ -145,7 +140,6 @@ const attack = (card_uid, target_uid) => {
         this.error.className = "error";
         board.appendChild(this.error).innerText = reponse;
         card_uid = null;
-        // isAttackMode = false;
     })
 }
 

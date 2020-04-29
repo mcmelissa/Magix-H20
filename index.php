@@ -26,14 +26,14 @@
     
         <section>
             <label for="username">Nom d'usager:</label>
-            <input type="text" name="username">
+            <input type="text" name="username" id="keyStorage">
         </section>
         <section>
             <label for="password">Mot de passe:</label>
             <input type="password" name="password">
         </section>
 
-        <input type="submit" value="Connexion" class="button">
+        <input type="submit" value="Connexion" class="button" id="localStorage">
     </form>
     <canvas id="canvas"></canvas>
 

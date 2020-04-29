@@ -9,21 +9,36 @@ let thumbleweedX = null;
 let thumbleweedY = null;
 let isThumbleweedKilled = false;
 
+
 window.addEventListener("load", () => {
     canvas = document.querySelector("canvas");
     ctx = canvas.getContext("2d");
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-
+    
+    if (localStorage.getItem('username')) {
+        getUsername();
+    }
+    
     tick()
 });
 
+function getUsername(){    
+    let retreiveUsername = localStorage.getItem("username");
+    document.querySelector("#keyStorage").value = retreiveUsername;
+}
+
 
 const tick = () => {
-    //clear canvas
+    // clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
     timer++;
+
+    // local storage
+    let storeUsername = document.querySelector("#localStorage");
+    storeUsername.onclick = () => {
+        localStorage.setItem("username", document.querySelector("#keyStorage").value);
+    }
     
     // thumbleweed //
     if (timer == 100) {
