@@ -8,33 +8,25 @@
 		}
 
         protected function executeAction() {
-            $data["key"] = $_SESSION["key"];
-            
             // Utilisation de l'API fourni avec le service "games/action"
-            // Option : TERMINER SON TOUR
-            if (isset($_POST['endTurn'])) {
-				$data["type"] = "END_TURN";
-				$result = CommonAction::callAPI("games/action", $data);
-            }
-            // Option : POUVOIR DU HERO
-            else if (isset($_POST['heroPower'])) {
-                $data["type"] = "HERO_POWER";
-				$result = CommonAction::callAPI("games/action", $data);
-            }
-            // Option : POUVOIR DU HERO
-            else if (isset($_POST['play'])) {
-                $data["type"] = "PLAY";
-                //$data["uid"] = ??
-                $result = CommonAction::callAPI("games/action", $data);
+            // données générales
+            $data["key"] = $_SESSION["key"];
+            $data["type"] = $_POST["type"];
+
+            // Option : PLAY
+            if ($data["type"] == "PLAY") {
+                $data["uid"] = $_POST["uid"];
             }
             // Option : ATTAQUER
-            else if (isset($_POST['attack'])) {
-                $data["type"] = "ATTACK";
-                //$data["uid"] = ??
-                //$data["targetuid"] = ??
-				$result = CommonAction::callAPI("games/action", $data);
+            else if ($data["type"] == "ATTACK") {
+                $data["uid"] = $_POST["uid"];
+                $data["targetuid"] = $_POST["targetuid"];
             }
-			
+
+            $result = CommonAction::callAPI("games/action", $data);
+            
 			return compact("result");
 		}
-	}
+    }
+    
+    

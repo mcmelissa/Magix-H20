@@ -10,7 +10,6 @@
 <script src="./js/sprite/Card.js"></script>
 
 <body id="game">
-    <!-- <a href="./lobby.php">Retour au Lobby</a> -->
     <main>
         <!---------------------------
             INFOS DE L'ADVERSAIRE
@@ -40,16 +39,6 @@
             LE JEU
         ---------------------------->
 
-        <!-- if connection to game failed -->
-        <?php
-            if (is_string($data["result"])) {
-            ?>
-                <div class="error">Erreur: <?= $data["result"] ?> </div>
-            <?php
-            }
-        ?>
-        <!-- - - - - - - - - - - - - - - -->
-
         <section class= "chat">
             <input type="checkbox">
             <h1>chat</h1> 
@@ -60,13 +49,10 @@
             </div>
         </section>
 
-        <form action="game.php" method="post">
-            <input type="submit" name="endTurn" class="endTurn">
-        </form>
         <section class="time"></section>
 
         <section class="board"> 
-            <!-- h1 : annoncer la fin du jeu -->
+            <!-- h1 : annoncer la attente/fin du jeu -->
             <div class="opponentBoard"></div>
             <div class="myBoard"></div>
         </section>
@@ -75,15 +61,11 @@
             MES INFOS
         ---------------------------->
         <section class="myGame">
-            <div class="hero"> <!-- contient l'image du hero -->
-                <div class="heroImage">
-                    <form action="game.php" method="post">
-                        <input type="submit" name="heroPower">
-                    </form>
-                </div>
+            <div class="hero">
+                <div class="heroImage"></div>
                 
                 <div class="infos">
-                    <h1 class="name"><?=$_SESSION["username"]?></h1>
+                    <h1 class="name"><?=$data["username"]?></h1>
                     <div class="heroType"></div>
                     <h3></h3>
                 

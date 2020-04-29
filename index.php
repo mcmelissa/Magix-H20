@@ -8,6 +8,8 @@
 
 <script src="./js/indexAnimation.js"></script>
 <script src="js/sprite/Thumbleweed.js"></script>
+<script src="js/sprite/Explosion.js"></script>
+<script src="js/TiledImage.js"></script>
 
 <body id="login">
     <form action="index.php" class="decorate" method="post">

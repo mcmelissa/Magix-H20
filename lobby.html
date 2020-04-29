@@ -1,31 +1,23 @@
-<?php
-	require_once("action/LobbyAction.php");
-	$action = new LobbyAction();
-    $data = $action->execute();
-
-	require_once("partial/header.php")
-?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lobby TEST!</title>
+    <!-- <script src="./js/jquery.min.js"></script> -->
+    <!-- <script src="./js/game.js"></script> -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
 
 <script src="./js/lobbyAnimation.js"></script>
-<script src="js/sprite/Thumbleweed.js"></script>
-<script src="js/sprite/Margarita.js"></script>
-<script src="js/sprite/Chili.js"></script>
+<script src="js/sprite/Chile.js"></script>
+<script src="js/sprite/Avocado.js"></script>
 
 <body id="lobby">
+    <!-- <div class="chile"></div> -->
     <main>
         <section>
-            <h3>¡Bonyour Amigó!</h3>
-            <h3>¿Qu'est-cè què ça sèra?</h3>
-
-            <!-- if connection to game failed -->
-            <?php
-                if ($data["connectionError"]) {
-                ?>
-                    <div class="error">Erreur: <?= $_SESSION["result"] ?> </div>
-                <?php
-                }
-            ?>
-            <!-- - - - - - - - - - - - - - - -->
+            <h1>¡Bonyour Amigó!</h1>
 
             <form action="lobby.php" method="post">
                 <input type="submit" name="training" value="Pratique" class="button">
@@ -44,12 +36,12 @@
             <!-- chat -->
              <!-- j'ai choisi de ne pas modifier le style, la lecture est plus facile -->
             <iframe style="width:700px;height:200px;"
-				src=https://magix.apps-de-cours.com/server/#/chat/<?=$_SESSION["key"]?>>
+				<!-- src=https://magix.apps-de-cours.com/server/#/chat/<?=$_SESSION["key"]?>> -->
             </iframe>
         </section>
     </main>
 
     <canvas id="canvas"></canvas>
 
-<?php
-	require_once("partial/footer.php");
+</body>
+</html>

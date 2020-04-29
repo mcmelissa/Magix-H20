@@ -12,13 +12,22 @@ class Thumbleweed {
       this.node.style.left = this.x + "px";
       this.node.style.top = this.y + "px";
       this.node.className = "thumbleweed";
-  
+
       this.parent = document.getElementById("login");
       this.parent.insertBefore(this.node, this.parent.firstChild) //dans login
+
+      isThumbleweedKilled = false;
     }
-  
+
+    getX() {
+      return this.x;
+    }
+
+    getY(){
+      return this.y;
+    }
+
     tick() {
-      
       //speed
       this.x += this.speed;
       this.node.style.left = this.x + "px";
@@ -27,7 +36,7 @@ class Thumbleweed {
       this.rotate += this.speed
       this.node.style.transform = "rotate(" + this.rotate + "deg)"
 
-      
+
       //bounce
       if (this.y < ((canvas.offsetHeight/4)*3)+1 && this.isUp) {
         this.y += (this.speed/2);
@@ -46,15 +55,20 @@ class Thumbleweed {
         }
       }
       this.node.style.top = this.y + "px";
-      
+
       //alive until end of canvas
       let alive = this.x < document.getElementById("login").offsetWidth;
+
+      addEventListener("click", () => {
+        spriteList.push(new Explosion(this.x, this.y));
+        isThumbleweedKilled = true;
+        this.node.remove();
+      })
 
       if (!alive) {
         this.node.remove();
       }
-  
+
       return alive;
     }
-  }
-  
+}

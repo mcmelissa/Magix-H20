@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>game TEST!</title>
+    <!-- <script src="./js/jquery.min.js"></script> -->
+    <!-- <script src="./js/game.js"></script> -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body id="game">
+    <main>
+        <!---------------------------
+            INFOS DE L'ADVERSAIRE
+        ---------------------------->
+        <section class="opponentGame">
+
+            <div class="hero"> <!-- contient l'image du hero -->
+                <div class="heroImage"></div>
+                <div class="infos">
+                    <h1 class="name">Nobody</h1>
+                    <div class="heroType">Priest</div>
+                    <h3>quote</h3>
+                </div>
+                <div class="hp_mana">
+                    <h1 class="hp">30</h1>
+                    <h1 class="mana">4</h1>
+                </div>
+            </div>
+
+            <div class="deck"> <!-- cartes -->
+                <div class="card"></div>
+                <div class="card"></div>
+                <div class="card"></div>
+            </div>
+
+            <h1 class="remainingDeck">28</h1>
+        </section>
+
+        <!---------------------------
+            LE JEU
+        ---------------------------->
+        <section class="time">
+            <div class="myTurn"></div>
+            <div class="timeRemaining"></div>
+        </section>
+
+        <section class="board">
+            
+             <div class="opponentBoard">
+                <div class="card">
+                    <div class="cardImage C0"></div>
+                    <h3 class="cardName">aguacate</h3>
+                    <div class="mechanics">battlecry</div>
+                    <h3 class="cardHp">6</h3>
+                    <h3 class="cardMana">0</h3>
+                    <h3 class="cardAttack">3</h3>
+                </div>
+                <div class="card">
+                    <div class="cardImage C5"></div>
+                    <h3 class="cardName">tortilla</h3>
+                    <div class="mechanics">battlecry</div>
+                    <h3 class="cardHp">6</h3>
+                    <h3 class="cardMana">5</h3>
+                    <h3 class="cardAttack">3</h3>
+                </div>
+                <div class="card">
+                    <div class="cardImage C6"></div>
+                    <h3 class="cardName">tabasco</h3>
+                    <div class="mechanics">battlecry</div>
+                    <h3 class="cardHp">6</h3>
+                    <h3 class="cardMana">6</h3>
+                    <h3 class="cardAttack">3</h3>
+                </div>
+                <div class="card">
+                    <div class="cardImage Cdefault"></div>
+                    <h3 class="cardName">banana</h3>
+                    <div class="mechanics">battlecry</div>
+                    <h3 class="cardHp">6</h3>
+                    <h3 class="cardMana">D</h3>
+                    <h3 class="cardAttack">3</h3>
+                </div>
+            </div>
+
+            <div class="myBoard">
+                <div class="card">
+                    <div class="cardImage C1"></div>
+                    <h3 class="cardName">lima</h3>
+                    <div class="mechanics">battlecry</div>
+                    <h3 class="cardHp">6</h3>
+                    <h3 class="cardMana">1</h3>
+                    <h3 class="cardAttack">3</h3>
+                </div>
+                <div class="card">
+                    <div class="cardImage C7"></div>
+                    <h3 class="cardName">tomate</h3>
+                    <div class="mechanics">battlecry</div>
+                    <h3 class="cardHp">6</h3>
+                    <h3 class="cardMana">7</h3>
+                    <h3 class="cardAttack">3</h3>
+                </div>
+                <div class="card">
+                    <div class="cardImage C8"></div>
+                    <h3 class="cardName">coco</h3>
+                    <div class="mechanics">battlecry</div>
+                    <h3 class="cardHp">6</h3>
+                    <h3 class="cardMana">8</h3>
+                    <h3 class="cardAttack">3</h3>
+                </div>
+                <div class="card">
+                    <div class="cardImage C9"></div>
+                    <h3 class="cardName">margarita</h3>
+                    <div class="mechanics">battlecry</div>
+                    <h3 class="cardHp">6</h3>
+                    <h3 class="cardMana">9</h3>
+                    <h3 class="cardAttack">3</h3>
+                </div>
+            </div>
+
+        </section>
+
+        <!---------------------------
+            MES INFOS
+        ---------------------------->
+        <section class="myGame">
+            <div class="hero"> 
+                <div class="heroImage"></div>
+                <div class="infos">
+                    <h1 class="name">Bibi</h1>
+                    <div class="heroType">Shaman</div>
+                    <h3>quote</h3>
+                </div>
+                <div class="hp_mana">
+                    <h1 class="hp">30</h1>
+                    <h1 class="mana">4</h1>
+                </div>
+            </div>
+
+            <div class="deck">
+                <div class="card">
+                    <div class="cardImage C2"></div>
+                    <h3 class="cardName">cilantro</h3>
+                    <div class="mechanics">battlecry</div>
+                    <h3 class="cardHp">6</h3>
+                    <h3 class="cardMana">2</h3>
+                    <h3 class="cardAttack">3</h3>
+                </div>
+                <div class="card">
+                    <div class="cardImage C3"></div>
+                    <h3 class="cardName">piña</h3>
+                    <div class="mechanics">taunt</div>
+                    <h3 class="cardHp">6</h3>
+                    <h3 class="cardMana">3</h3>
+                    <h3 class="cardAttack">3</h3>
+                </div>
+                <div class="card">
+                    <div class="cardImage C4"></div>
+                    <h3 class="cardName">mango</h3>
+                    <div class="mechanics">battlecry</div>
+                    <h3 class="cardHp">6</h3>
+                    <h3 class="cardMana">4</h3>
+                    <h3 class="cardAttack">3</h3>
+                </div>
+                <div class="card">
+                    <div class="cardImage C10"></div>
+                    <h3 class="cardName">chile</h3>
+                    <div class="mechanics">battlecry</div>
+                    <h3 class="cardHp">6</h3>
+                    <h3 class="cardMana">10</h3>
+                    <h3 class="cardAttack">3</h3>
+                </div>
+            </div>
+
+            <h1 class="remainingDeck">25</h1>
+
+        </section>
+    </main>
+</body>
+</html>

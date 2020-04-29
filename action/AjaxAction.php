@@ -9,9 +9,9 @@
 
         protected function executeAction() {
             $data["key"] = $_SESSION["key"];
-            
-            // Utilisation de l'API fourni avec le service "games/state"
-            $result = CommonAction::callAPI("games/state", $data);
+            	
+			// Utilisation de l'API fourni avec le service "games/state"
+			$result = CommonAction::callAPI("games/state", $data);
 
 			return compact("result");
 		}

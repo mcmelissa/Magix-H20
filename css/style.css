@@ -106,7 +106,7 @@ div {
     height: 100vh;
     overflow: hidden;
     background-image: url(../images/saloon_closeup_or.jpg);
-    background-size: cover;
+    background-size: 100% 100%;
     display: flex;
 }
 
@@ -131,6 +131,7 @@ div {
 }
 
 #lobby form {
+    z-index: 4;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -159,7 +160,7 @@ div {
 }
 
 #lobby .button:last-of-type {
-    margin-top: 30px;
+    margin-top: 20px;
     background-color: dimgray;
     transition: 1s all ease;
 }
@@ -207,8 +208,9 @@ div {
 }
 
 .myGame .hero:hover {
-    border: 13px solid coral;
+    border: 12px solid coral;
     border-radius: 200px;
+    background-color: gold;
 }
 
 .heroImage {
@@ -223,7 +225,7 @@ div {
     /* width: 120px; */
     z-index: 2;
     position: absolute;
-    right: 90px;
+    right: 88px;
     background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.7));
     padding: 5px 15px;
     width: 100%;
@@ -274,8 +276,8 @@ div {
 .cardImage {
     width: 100%;
     height: 40%;
-    background-color: grey;
-    border-radius: 10px 10px 0 0;
+    background-color: rgb(216, 216, 171);
+    border-radius: 15px 15px 0 0;
 }
 
 .cardName {
@@ -284,6 +286,7 @@ div {
     padding: 3px 0;
     margin-bottom: 3px;
     background-color: mediumseagreen;
+    background-blend-mode: darken;
 }
 
 .cardHp {
@@ -556,7 +559,9 @@ div {
 }
 
 .myGame .heroImage {
-    background-image: url(../images/heroes/avocado.png);
+    /* background-image: url(../images/heroes/avocado.png); */
+    background-image: url(../images/heroes/aguacate.png);
+    background-size: contain;
 }
 
 .myGame .infos {
@@ -601,7 +606,12 @@ div {
 }
 
 .opponentGame .heroImage {
-    background-image: url(../images/heroes/chile.png);
+    background-image: url(../images/heroes/chile1.png);
+    background-size: 36%;
+    background-repeat: no-repeat;
+    background-position-x: 40px;
+    background-position-y: -50px;
+    transform: rotate(-10deg);
 }
 
 .opponentGame .infos {
@@ -631,16 +641,9 @@ div {
     margin-right: 30px;
 }
 
-.heroImage form{
-    width: 100%;
-    height: 100%;
-}
-
-.heroImage form input {
+.board .error {
     position: absolute;
-    top: 100px;
-    width: 100%;
-    height: 100px;
+    top: 0;
 }
 
 /*---------------------------------------
@@ -648,25 +651,32 @@ div {
  ----------------------------------------*/
 .banderole {
     position: absolute;
-    background-color: teal;
     width: 50vw;
-    height: 50vh;
+    height: 65vh;
     top: 0;
+    left: 25vw;
+    filter: drop-shadow(2px 2px 5px #222);
 }
 
 .waiting {
     background-image: url(../images/banderole_waiting.png);
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center top;
 }
 
 .won {
     background-image: url(../images/banderole_won.png);
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center top;
 }
 
 .lost {
     background-image: url(../images/banderole_lost.png);
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center top;
 }
 
 /*---------------------------------------
@@ -681,6 +691,151 @@ div {
 .thumbleweed {
 	position: absolute;
 	background-image: url(../images/thumbleweed.png);
-	width: 250px;
+    width: 250px;
 	height: 228px;
+}
+
+.chili {
+	position: absolute;
+    background-image: url(../images/heroes/chile1.png);
+    background-size: cover;
+    width: 93px;
+	height: 400px;
+
+}
+
+.margarita {
+	position: absolute;
+    /* background-image: url(../images/heroes/aguacate.png); */
+    background-image: url(../images/cards/margarita.png);
+    background-size: cover;
+    width: 739px;
+	height: 484px;
+    /* width: 284px;
+	height: 400px; */
+
+}
+
+.explosion {
+	position: absolute;
+    background-image: url(../images/explosion.png);
+    background-size: cover;
+    width: 97px;
+	height: 83px;
+
+}
+
+/*---------------------------------------
+   OPTION OBSERVER : LOBBY
+ ----------------------------------------*/
+#lobby .observe {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    border: 5px gold ridge;
+    background-color: goldenrod;
+    padding: 5px;
+    width: 90%;
+}
+
+#lobby .observe * {
+    text-align: center;
+    font-size: medium;
+    margin: auto 0;
+    height: 2em;
+}
+
+#lobby .observe input:last-of-type {
+    margin-top: 0;
+}
+
+/*---------------------------------------
+   IMAGES DES CARTES
+ ----------------------------------------*/
+.C0 {
+    /* avocat */
+    background-image: url(../images/heroes/aguacate.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top center;
+}
+
+.C1 {
+    /* lime */
+    background-image: url(../images/cards/lima.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.C2 {
+    /* coriandre */
+    background-image: url(../images/cards/cilantro.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.C3 {
+    /* ananas */
+    background-image: url(../images/cards/pina.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.C4 {
+    /* mangue */
+    background-image: url(../images/cards/mango.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.C5 {
+    /* tortilla */
+    background-image: url(../images/cards/tortilla.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.C6 {
+    /* tabasco */
+    /* background-image: url(../images/tabasco.png); */
+    background-image: url(../images/cards/hot_sauce.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.C7 {
+    /* tomate */
+    background-image: url(../images/cards/tomate.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.C8 {
+    /* coco */
+    background-image: url(../images/cards/coco2.png);
+    /* background-image: url(../images/cards/coco.png); */
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.C9 {
+    /* margarita */
+    background-image: url(../images/cards/margarita.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.C10 {
+    /* chile */
+    /* background-image: url(../images/heroes/chile.png); */
+    /* background-size: 70%; */
+    background-image: url(../images/heroes/chile1.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+}
+
+.Cdefault {
+    /* banana */
+    background-image: url(../images/cards/banana.png);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
